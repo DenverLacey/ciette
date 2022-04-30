@@ -1,6 +1,18 @@
 #pragma once
 
-class Diagnostic {
-public:
-    virtual ~Diagnostic() {}
-};
+#include <ostream>
+
+namespace ciette {
+
+    class Diagnostic {
+    public:
+        virtual ~Diagnostic() {}
+
+        virtual std::ostream& write(std::ostream& s) const = 0;
+
+        friend std::ostream& operator<<(std::ostream& s, const Diagnostic& diagnostic) {
+            return diagnostic.write(s);
+        }
+    };
+
+}

@@ -1,8 +1,13 @@
 #include <iostream>
 
-#include "diagnostic.h"
+#include "basic_diagnostic.h"
+#include "source_span.h"
 
 int main() {
-    printf("Hello, ciette!\n");
+    auto basic = ciette::BasicDiagnostic{ "Hello, ciette!" };
+    std::cout << basic << std::endl;
+
+    auto span = ciette::SourceSpan{ 0, 1 };
+    auto labeled = ciette::LabeledSourceSpan{ "label", span };
     return 0;
 }
