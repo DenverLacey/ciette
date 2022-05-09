@@ -6,11 +6,11 @@
 
 namespace ciette {
 
-    class BasicDiagnostic : public Diagnostic {
+    class TextDiagnostic : public Diagnostic {
         std::string message;
 
     public:
-        BasicDiagnostic(std::string message) : message(std::move(message)) {}
+        TextDiagnostic(std::string message) : message(std::move(message)) {}
         std::ostream& write(std::ostream& s) const override;
     };
 

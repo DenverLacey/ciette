@@ -6,6 +6,11 @@
 
 namespace ciette {
 
+    struct OpenedSource {
+        const char *file_name;
+        std::string_view source;
+    };
+
     struct SourceSnippet {
         std::string_view line;
         size_t lineno;
@@ -35,28 +40,28 @@ namespace ciette {
         SourceSnippet snippet(std::string_view source) const;
     };
 
-    class LabeledSourceSpan : public SourceSpan {
-        std::string _label;
+    class SourceSpanWithText : public SourceSpan {
+        std::string _text;
 
     public:
-        LabeledSourceSpan(std::string label, size_t start, size_t length) :
+        SourceSpanWithText(std::string label, size_t start, size_t length) :
             SourceSpan(start, length),
-            _label(std::move(label))
+            _text(std::move(label))
         {
         }
 
-        LabeledSourceSpan(std::string label, SourceSpan span) :
+        SourceSpanWithText(std::string label, SourceSpan span) :
             SourceSpan(span.start(), span.length()),
-            _label(std::move(label))
+            _text(std::move(label))
         {
         }
 
-        LabeledSourceSpan(const LabeledSourceSpan& other) = default;
-        LabeledSourceSpan(LabeledSourceSpan&& other) = default;
+        SourceSpanWithText(const SourceSpanWithText& other) = default;
+        SourceSpanWithText(SourceSpanWithText&& other) = default;
     
     public:
-        inline const std::string& label() const {
-            return this->_label;
+        inline const std::string& text() const {
+            return this->_text;
         }
 
         inline const SourceSpan& span() const {

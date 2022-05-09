@@ -10,14 +10,14 @@
 
 namespace ciette {
 
-    class FullDiagnostic : public Diagnostic {
+    class SourceDiagnostic : public Diagnostic {
         std::string kind;
-        std::string_view source;
-        LabeledSourceSpan span;
+        OpenedSource source;
+        SourceSpanWithText span;
         std::vector<Note> notes;
 
     public:
-        FullDiagnostic(std::string kind, std::string_view source, const LabeledSourceSpan& span, const std::vector<Note>& notes) :
+        SourceDiagnostic(std::string kind, OpenedSource source, const SourceSpanWithText& span, const std::vector<Note>& notes) :
             kind(std::move(kind)),
             source(source),
             span(std::move(span)),
