@@ -11,6 +11,7 @@ int main() {
         "Spelling Mistake!", 
         { "source.txt", source },
         { "This is spelled incorrectly.", 38, 3 }, 
+        // { "", 38, 3 },
         { 
             { ciette::NoteKind::Hint, "Maybe you meant 'some'." } 
         }
