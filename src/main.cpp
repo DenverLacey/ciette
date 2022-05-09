@@ -1,13 +1,21 @@
 #include <iostream>
 
 #include "basic_diagnostic.h"
+#include "full_diagnostic.h"
 #include "source_span.h"
 
 int main() {
-    auto basic = ciette::BasicDiagnostic{ "Hello, ciette!" };
-    std::cout << basic << std::endl;
+    const char *source = "hello\nthis is sme source.";
+    auto full = ciette::FullDiagnostic{ 
+        "Spelling Mistake!", 
+        source, 
+        { "This is spelled incorrectly", 14, 3 }, 
+        { 
+            { ciette::NoteKind::Hint, "Maybe you meant 'some'." } 
+        }
+    };
 
-    auto span = ciette::SourceSpan{ 0, 1 };
-    auto labeled = ciette::LabeledSourceSpan{ "label", span };
+    std::cout << full;
+
     return 0;
 }

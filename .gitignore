@@ -35,3 +35,6 @@ Makefile
 
 # MACOS stuff
 .DS_Store
+
+# VS Code
+.vscode

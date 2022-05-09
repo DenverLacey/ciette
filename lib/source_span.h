@@ -1,7 +1,16 @@
+#pragma once
+
 #include <stddef.h>
 #include <string>
+#include <string_view>
 
 namespace ciette {
+
+    struct SourceSnippet {
+        std::string_view line;
+        size_t lineno;
+        size_t column, length;
+    };
 
     class SourceSpan {
         size_t _start;
@@ -22,6 +31,8 @@ namespace ciette {
         inline bool is_empty() const {
             return this->_length == 0;
         }
+
+        SourceSnippet snippet(std::string_view source) const;
     };
 
     class LabeledSourceSpan : public SourceSpan {
